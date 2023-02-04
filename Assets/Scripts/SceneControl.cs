@@ -5,28 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class SceneControl : MonoBehaviour
 {
-    public GameObject gameOverScreen;
+    GameObject canvas;
+
+    void Start()
+    {
+        canvas = transform.GetChild(0).gameObject;
+    }
 
     // Button for start game (start menu -> game screen)
-    public void startGame()
+    public void StartGame()
     {
         SceneManager.LoadScene("RunGameScene");
     }
 
     // Logic for when game is over
-    public void gameOver()
+    public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        canvas.SetActive(true);
     }
 
     // Button for playing again (end menu -> game screen)
-    public void playAgain()
+    public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Play again");
     }
 
     // Button for return to main menu (end menu -> start menu)
-    public void toMenu()
+    public void ToMenu()
     {
         SceneManager.LoadScene("StartScene");
     }

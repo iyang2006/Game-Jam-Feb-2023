@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // one dirt chunk at the start of the game
-    public GameObject DirtChunk;
-    public List<GameObject> DirtChunks;
+    public GameObject gameOverScreen;
+    SceneControl sceneControl;
+    public GameObject player;
+    Player playerScript;
+    bool gameEnded;
 
-    public GameObject Rock;
+    // one dirt chunk at the start of the game
+    public GameObject dirtChunkPrefab;
+    public List<GameObject> dirtChunks;
+
+    public GameObject rockPrefab;
     List<GameObject[]> rocks;
 
     float speed = 2f;
@@ -21,6 +27,10 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        sceneControl = gameOverScreen.GetComponent<SceneControl>();
+        playerScript = player.GetComponent<Player>();
+        gameEnded = false;
+
         rocks = new List<GameObject[]>();
 
         rockSpawnPos = new Vector2(-3, -4);
@@ -42,7 +52,7 @@ public class GameController : MonoBehaviour
             if (chance < spawnChance)
             {
                 Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
-                GameObject rock = Instantiate(Rock, pos, Quaternion.identity);
+                GameObject rock = Instantiate(rockPrefab, pos, Quaternion.identity);
                 row[i] = rock;
                 addRow = true;
             }
@@ -53,8 +63,27 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void PlayAgain()
+    {
+
+    }
+
     void Update()
     {
+        if (playerScript.dead)
+        {
+            if (!gameEnded)
+            {
+                gameEnded = true;
+                sceneControl.GameOver();
+            }
+        }
+
+        if (gameEnded)
+        {
+            return;
+        }
+
         timeSinceLastSpawn += Time.deltaTime;
 
         Vector3 posChange = Vector3.up * speed * Time.deltaTime;
@@ -103,10 +132,10 @@ public class GameController : MonoBehaviour
         }
 
         // Handle the dirt chunks
-        for (int i = DirtChunks.Count - 1; i >= 0; i--)
+        for (int i = dirtChunks.Count - 1; i >= 0; i--)
         {
             // move the chunk up
-            GameObject chunk = DirtChunks[i];
+            GameObject chunk = dirtChunks[i];
             chunk.transform.Translate(posChange);
 
             // check if the chuck should be destroyed
@@ -115,12 +144,12 @@ public class GameController : MonoBehaviour
             {
                 // Destroy the old chunk
                 Destroy(chunk);
-                DirtChunks.Remove(chunk);
+                dirtChunks.Remove(chunk);
 
                 // Instantiate a new chunk
                 Vector2 center = new Vector2(0, y_pos - TileSize * 2);
-                GameObject newChunk = Instantiate(DirtChunk, new Vector3(center.x, center.y, 0), Quaternion.identity);
-                DirtChunks.Add(newChunk);
+                GameObject newChunk = Instantiate(dirtChunkPrefab, new Vector3(center.x, center.y, 0), Quaternion.identity);
+                dirtChunks.Add(newChunk);
             }
         }
     }

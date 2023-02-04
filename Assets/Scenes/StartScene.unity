@@ -666,8 +666,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1179480733}
-        m_TargetAssemblyTypeName: Logic, Assembly-CSharp
-        m_MethodName: startGame
+        m_TargetAssemblyTypeName: SceneControl, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -727,7 +727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc2281952601894c8df81487cee61f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverScreen: {fileID: 0}
 --- !u!1 &2012362447
 GameObject:
   m_ObjectHideFlags: 0
