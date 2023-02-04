@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector3 position = gameObject.transform.position;
-        position = new Vector3(position.x + 100.0f, position.y, position.z);
+        gameObject.transform.position = new Vector3(position.x + 0.1f, position.y, position.z);
         //position.x = position.x + 100.0f;
         Debug.Log(position.y);
         //mousePosition = Input.mousePosition;
