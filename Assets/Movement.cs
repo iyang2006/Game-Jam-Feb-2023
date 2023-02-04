@@ -17,12 +17,14 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector3 position = gameObject.transform.position;
-        gameObject.transform.position = new Vector3(position.x + 0.1f, position.y, position.z);
+        //gameObject.transform.position = new Vector3(position.x + 0.1f, position.y, position.z);
         //position.x = position.x + 100.0f;
         Debug.Log(position.y);
-        //mousePosition = Input.mousePosition;
-        //Debug.Log(mousePosition.x + ", " + mousePosition.y);
+
+        mousePosition = Input.mousePosition;
+        Debug.Log(mousePosition.x + ", " + mousePosition.y + "  |  " + Screen.width);
         //Vector3 position = gameObject.transform.position;
+        gameObject.transform.position = new Vector3(mousePosition.x, position.y, position.z);
         //position.x = mousePosition.x;
     }
 }
