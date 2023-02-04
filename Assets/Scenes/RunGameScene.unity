@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 10872085}
   - component: {fileID: 10872084}
   - component: {fileID: 10872083}
+  - component: {fileID: 10872086}
   m_Layer: 5
   m_Name: Play Again Button
   m_TagString: Untagged
@@ -211,7 +212,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 10872084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 10872086}
+        m_TargetAssemblyTypeName: Logic, Assembly-CSharp
+        m_MethodName: playAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &10872084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +263,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10872081}
   m_CullTransparentMesh: 1
+--- !u!114 &10872086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10872081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc2281952601894c8df81487cee61f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &74883411
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +394,50 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &373219941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373219943}
+  - component: {fileID: 373219942}
+  m_Layer: 0
+  m_Name: Logic Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &373219942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373219941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82651c220912fe4b98829eea453265e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &373219943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373219941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 454.90836, y: 163.36613, z: -3.6011357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438494746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,6 +1306,7 @@ GameObject:
   - component: {fileID: 2056531526}
   - component: {fileID: 2056531525}
   - component: {fileID: 2056531524}
+  - component: {fileID: 2056531527}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -1308,7 +1378,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2056531525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2056531527}
+        m_TargetAssemblyTypeName: Logic, Assembly-CSharp
+        m_MethodName: toMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2056531525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,6 +1429,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056531522}
   m_CullTransparentMesh: 1
+--- !u!114 &2056531527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056531522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc2281952601894c8df81487cee61f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3157672122223472758
 PrefabInstance:
   m_ObjectHideFlags: 0
