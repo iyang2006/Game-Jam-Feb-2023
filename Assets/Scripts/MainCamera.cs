@@ -9,7 +9,7 @@ public class MainCamera : MonoBehaviour
     void Start()
     {
         // make the camera the same size as the dirt background
-        float orthoSize = DirtBackground.bounds.size.x * Screen.height / Screen.width * 0.5f;
-        Camera.main.orthographicSize = orthoSize;
+        // float orthoSize = DirtBackground.bounds.size.x * Screen.height / Screen.width * 0.5f;
+        // Camera.main.orthographicSize = orthoSize;
     }
 }

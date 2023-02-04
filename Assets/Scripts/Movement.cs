@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Vector3 initialMousePosition;
-    private Vector3 mousePosition;
+    const float HalfTileWidth = 3.5f;
+
+    Vector3 initialMousePosition;
+    Vector3 mousePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -23,21 +25,21 @@ public class Movement : MonoBehaviour
         //Debug.Log(mousePosition.x + ", " + mousePosition.y + "  |  " + Screen.width);
 
         float halfScreen = Screen.width / 2;
-        float rootPosition = (mousePosition.x - halfScreen) * (10 / halfScreen);
-        if (rootPosition < -10)
+        float rootPosition = (mousePosition.x - halfScreen) * (HalfTileWidth / halfScreen);
+        if (rootPosition < -HalfTileWidth)
         {
-            gameObject.transform.position = new Vector3(-10, position.y, position.z);
+            gameObject.transform.position = new Vector3(-HalfTileWidth, position.y, position.z);
         }
-        else if (rootPosition > 10)
+        else if (rootPosition > HalfTileWidth)
         {
-            gameObject.transform.position = new Vector3(10, position.y, position.z);
+            gameObject.transform.position = new Vector3(HalfTileWidth, position.y, position.z);
         }
         else
         {
             gameObject.transform.position = new Vector3(rootPosition, position.y, position.z);
         }
         
-        //Debug.Log("(" + mousePosition.x + " - " + "(" + Screen.width + "/" + 2 + ")) * (" + 10 + "/ (" + Screen.width + "/ (" + 2 + "))");
+        //Debug.Log("(" + mousePosition.x + " - " + "(" + Screen.width + "/" + 2 + ")) * (" + TileWidth + "/ (" + Screen.width + "/ (" + 2 + "))");
         //Debug.Log(mousePosition.x + "  |  " + rootPosition + "  |  " + Screen.width);
     }
 }

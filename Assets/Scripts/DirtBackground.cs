@@ -15,6 +15,6 @@ public class DirtBackground : MonoBehaviour
     void Update()
     {
         // Scroll the texture based on the scroll speed
-        material.mainTextureOffset += new Vector2(0, scrollSpeed * Time.deltaTime);
+        // material.mainTextureOffset += new Vector2(0, scrollSpeed * Time.deltaTime);
     }
 }
