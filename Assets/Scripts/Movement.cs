@@ -17,12 +17,27 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector3 position = gameObject.transform.position;
-        gameObject.transform.position = new Vector3(position.x + 0.1f, position.y, position.z);
-        //position.x = position.x + 100.0f;
-        Debug.Log(position.y);
-        //mousePosition = Input.mousePosition;
-        //Debug.Log(mousePosition.x + ", " + mousePosition.y);
-        //Vector3 position = gameObject.transform.position;
-        //position.x = mousePosition.x;
+        //Debug.Log(position.y);
+
+        mousePosition = Input.mousePosition;
+        //Debug.Log(mousePosition.x + ", " + mousePosition.y + "  |  " + Screen.width);
+
+        float halfScreen = Screen.width / 2;
+        float rootPosition = (mousePosition.x - halfScreen) * (10 / halfScreen);
+        if (rootPosition < -10)
+        {
+            gameObject.transform.position = new Vector3(-10, position.y, position.z);
+        }
+        else if (rootPosition > 10)
+        {
+            gameObject.transform.position = new Vector3(10, position.y, position.z);
+        }
+        else
+        {
+            gameObject.transform.position = new Vector3(rootPosition, position.y, position.z);
+        }
+        
+        //Debug.Log("(" + mousePosition.x + " - " + "(" + Screen.width + "/" + 2 + ")) * (" + 10 + "/ (" + Screen.width + "/ (" + 2 + "))");
+        //Debug.Log(mousePosition.x + "  |  " + rootPosition + "  |  " + Screen.width);
     }
 }
