@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    const float HalfTileWidth = 3.5f;
+    const float HalfTileWidth = 3.25f;
 
     Vector3 initialMousePosition;
     Vector3 mousePosition;
