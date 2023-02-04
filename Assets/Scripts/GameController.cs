@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
         rocks = new List<GameObject[]>();
 
         rockSpawnPos = new Vector2(-3, -4);
-        // timeBetweenSpawns = 1.0f / speed;
         timeBetweenSpawns = 1f / speed;
         timeSinceLastSpawn = 0.0f;
 
@@ -36,6 +35,7 @@ public class GameController : MonoBehaviour
     {
         // Spawn a row of rocks, with percentage chance of a rock being spawned
         GameObject[] row = new GameObject[TileSize];
+        bool addRow = false;
         for (int i = 0; i < TileSize; i++)
         {
             float chance = Random.Range(0.0f, 1.0f);
@@ -44,9 +44,13 @@ public class GameController : MonoBehaviour
                 Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
                 GameObject rock = Instantiate(Rock, pos, Quaternion.identity);
                 row[i] = rock;
+                addRow = true;
             }
         }
-        rocks.Add(row);
+        if (addRow)
+        {
+            rocks.Add(row);
+        }
     }
 
     void Update()
@@ -62,23 +66,6 @@ public class GameController : MonoBehaviour
             SpawnRockRow(0.2f);
         }
 
-        // Remove first row of rocks if it's off the screen
-        if (rocks.Count > 0)
-        {
-            for (int i = 0; i < rocks[0].Length; i++)
-            {
-                GameObject rock = rocks[0][i];
-                if (rock != null)
-                {
-                    if (rock.transform.position.y > TileSize)
-                    {
-                        Destroy(rock);
-                    }
-                }
-            }
-        }
-
-
         // Move all the rocks up
         for (int i = 0; i < rocks.Count; i++)
         {
@@ -91,6 +78,28 @@ public class GameController : MonoBehaviour
                     rock.transform.Translate(posChange);
                 }
             }
+        }
+
+        // Remove first row of rocks if it's off the screen
+        bool removeRow = false;
+        if (rocks.Count > 0)
+        {
+            for (int i = 0; i < rocks[0].Length; i++)
+            {
+                GameObject rock = rocks[0][i];
+                if (rock != null)
+                {
+                    if (rock.transform.position.y > 4)
+                    {
+                        removeRow = true;
+                        Destroy(rock);
+                    }
+                }
+            }
+        }
+        if (removeRow)
+        {
+            rocks.RemoveAt(0);
         }
 
         // Handle the dirt chunks
