@@ -16,6 +16,7 @@ public class PointsSystem : MonoBehaviour
     public Text depthTxt;
     public Text depthOverTxt;
     public Text waterTxt;
+    public Text waterOverTxt;
     private double depthDouble = 0;
 
     // Start is called before the first frame update
@@ -37,6 +38,7 @@ public class PointsSystem : MonoBehaviour
             if (!gameEnded)
             {
                 gameEnded = true;
+                Debug.Log(sceneControl==null);
                 sceneControl.GameDeactivate();
             }
         }
@@ -51,5 +53,9 @@ public class PointsSystem : MonoBehaviour
         playerScript.depth = (int)depthDouble;
         depthTxt.text = string.Format("{0:#,###0}", playerScript.depth);
         depthOverTxt.text = depthTxt.text;
+
+        // Increase water points by the amount of water collected
+        waterTxt.text = string.Format("{0:#,###0}", playerScript.waterPoints);
+        waterOverTxt.text = waterTxt.text;
     }
 }
