@@ -36,4 +36,10 @@ public class SceneControl : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
+
+    // Button for exiting game
+    public void ExitGame()
+    {
+
+    }
 }
