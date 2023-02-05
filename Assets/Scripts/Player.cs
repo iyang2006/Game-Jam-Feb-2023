@@ -33,11 +33,16 @@ public class Player : MonoBehaviour
         {
             dead = true;
         }
-        if (collision.collider.tag == "Water")
+        else if (collision.collider.tag == "Water")
         {
             Destroy(collision.gameObject);
-            //waterPoints += (int) (pointsMultiplier + 1);
             waterPoints += (int) Math.Ceiling(pointsMultiplier);
+            Debug.Log("POINTS: " + waterPoints + "=================================================");
+        }
+        else if (collision.collider.tag == "RootBeer")
+        {
+            Destroy(collision.gameObject);
+            pointsMultiplier = (float) Math.Ceiling(pointsMultiplier * 1.5f);
             Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
     }
