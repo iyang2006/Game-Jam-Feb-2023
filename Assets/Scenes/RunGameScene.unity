@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 74883423}
   - component: {fileID: 74883422}
   - component: {fileID: 74883421}
+  - component: {fileID: 74883424}
   m_Layer: 0
   m_Name: Root Player
   m_TagString: Player
@@ -428,6 +429,8 @@ MonoBehaviour:
   bonkSound: {fileID: 74883423}
   waterSound: {fileID: 74883422}
   rootBeerSound: {fileID: 74883421}
+  rootCanalSound: {fileID: 74883424}
+  mainCamera: {fileID: 442491434}
 --- !u!120 &74883419
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -755,6 +758,102 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b367f2d930218bb45a14fa987f8eeb73, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &74883424
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74883411}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1632908badfabd54e8da37071082fdc1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1400,9 +1499,11 @@ MonoBehaviour:
   squareRockPrefab: {fileID: 0}
   waterPrefab: {fileID: 4904919984231573047, guid: 5b260fde33534fa45adb776cc2772991, type: 3}
   rootBeerPrefab: {fileID: 4904919984231573047, guid: 1c0816569f3bab94ca7e4ef676006214, type: 3}
+  rootCanalPrefab: {fileID: 4904919984231573047, guid: 833c032afecd25649befe4c1e606872e, type: 3}
   rockSpawnChance: 0.15
   waterSpawnChance: 0.05
   rootBeerSpawnChance: 0.02
+  rootCanalSpawnChance: 0.005
 --- !u!1 &787622139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,9 +2308,11 @@ MonoBehaviour:
   squareRockPrefab: {fileID: 0}
   waterPrefab: {fileID: 0}
   rootBeerPrefab: {fileID: 0}
+  rootCanalPrefab: {fileID: 0}
   rockSpawnChance: 0.15
   waterSpawnChance: 0.05
   rootBeerSpawnChance: 0.03
+  rootCanalSpawnChance: 0.01
 --- !u!1 &1879392886
 GameObject:
   m_ObjectHideFlags: 0

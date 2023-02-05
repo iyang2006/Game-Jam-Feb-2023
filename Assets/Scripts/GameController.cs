@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     public GameObject squareRockPrefab;
     public GameObject waterPrefab;
     public GameObject rootBeerPrefab;
+    public GameObject rootCanalPrefab;
     List<GameObject[]> rocks;
 
     int emptyPos;
@@ -56,6 +57,7 @@ public class GameController : MonoBehaviour
     public float rockSpawnChance = 0.15f;
     public float waterSpawnChance = 0.05f;
     public float rootBeerSpawnChance = 0.03f;
+    public float rootCanalSpawnChance = 0.01f;
 
     float levelTime;
     int level = 1;
@@ -211,6 +213,18 @@ public class GameController : MonoBehaviour
                 Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
                 GameObject rootBeer = Instantiate(rootBeerPrefab, pos, Quaternion.identity);
                 row[i] = rootBeer;
+                addRow = true;
+            }
+        }
+
+        for (int i = 0; i < TileSize; i++)
+        {
+            float chance = Random.Range(0.0f, 1.0f);
+            if ((chance < rootCanalSpawnChance) && (row[i] == null))
+            {
+                Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
+                GameObject rock = Instantiate(rootCanalPrefab, pos, Quaternion.identity);
+                row[i] = rock;
                 addRow = true;
             }
         }
