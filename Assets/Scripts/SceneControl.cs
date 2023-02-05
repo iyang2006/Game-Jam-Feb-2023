@@ -42,4 +42,12 @@ public class SceneControl : MonoBehaviour
     {
 
     }
+
+    /*private void ActivateTimer(float duration, bool screen)
+    {
+        startScreen= screen;
+        timerDuration = duration;
+        timerTime = 0;
+        timerActive = true;
+    }*/
 }
