@@ -328,7 +328,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 0
 --- !u!222 &42860076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1200,8 +1200,9 @@ MonoBehaviour:
   - {fileID: 3157672122223472759}
   - {fileID: 1003034935}
   rockPrefab: {fileID: 4904919984231573047, guid: a2a044cdcb12a408e80ff73a2a469699, type: 3}
-  depthTxt: {fileID: 1807991972}
-  waterTxt: {fileID: 42860075}
+  waterPrefab: {fileID: 4904919984231573047, guid: 5b260fde33534fa45adb776cc2772991, type: 3}
+  rockSpawnChance: 0.15
+  waterSpawnChance: 0.05
 --- !u!1 &787622139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,6 +1283,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787622139}
   m_CullTransparentMesh: 1
+--- !u!1 &931361389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 931361391}
+  - component: {fileID: 931361390}
+  m_Layer: 0
+  m_Name: Points Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &931361390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931361389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5cb54b37cdf1f4090fb32f4e9a1c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsScreen: {fileID: 1572924486}
+  player: {fileID: 74883411}
+  depthTxt: {fileID: 1807991972}
+  depthOverTxt: {fileID: 470873029}
+  waterTxt: {fileID: 42860075}
+  waterOverTxt: {fileID: 591354787}
+--- !u!4 &931361391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931361389}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 314.56558, y: 155.89832, z: -1.6785878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1003034934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,7 +1498,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: cec7140768069524ea3fc78321b835a9, type: 3}
+  m_Texture: {fileID: 2800000, guid: 4df2f34f4f04ec94a94e048acae0fe90, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1737,6 +1788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1572924487}
+  - component: {fileID: 1572924488}
   m_Layer: 0
   m_Name: Points
   m_TagString: Untagged
@@ -1758,8 +1810,20 @@ Transform:
   m_Children:
   - {fileID: 1484095715}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572924488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572924486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc2281952601894c8df81487cee61f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1740153471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,8 +2004,9 @@ MonoBehaviour:
   dirtChunkPrefab: {fileID: 0}
   dirtChunks: []
   rockPrefab: {fileID: 0}
-  depthTxt: {fileID: 0}
-  waterTxt: {fileID: 0}
+  waterPrefab: {fileID: 0}
+  rockSpawnChance: 0.15
+  waterSpawnChance: 0.05
 --- !u!1 &1879392886
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,7 +2073,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1969276685
 GameObject:
