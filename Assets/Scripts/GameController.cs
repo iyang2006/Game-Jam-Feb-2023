@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
     public float rockSpawnChance = 0.15f;
     public float waterSpawnChance = 0.05f;
     public float rootBeerSpawnChance = 0.03f;
-    public float rootCanalSpawnChance = 0.01f;
+    public float rootCanalSpawnChance = 0.005f;
 
     float levelTime;
     int level = 1;

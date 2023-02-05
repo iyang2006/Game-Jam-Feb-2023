@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Destroy(collision.gameObject);
+                collision.gameObject.SetActive(false);
                 rootCanalSound.Play();
             }
         }
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         }
         else if (collision.collider.tag == "RootCanal")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             rootBeerSound.Play();
 
             timerTime = timerDuration;
