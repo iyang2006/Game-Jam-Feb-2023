@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
     [HideInInspector] public float depth = 0;
 
     [HideInInspector] public bool dead = false;
+
+    public AudioSource bonkSound;
+    public AudioSource waterSound;
+    public AudioSource rootBeerSound;
 
     // Start is called before the first frame update
     void Start()
@@ -32,13 +37,21 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Rock")
         {
             dead = true;
+            bonkSound.Play();
         }
-        if (collision.collider.tag == "Water")
+        else if (collision.collider.tag == "Water")
         {
             Destroy(collision.gameObject);
-            //waterPoints += (int) (pointsMultiplier + 1);
             waterPoints += (int) Math.Ceiling(pointsMultiplier);
-            Debug.Log("POINTS: " + waterPoints + "=================================================");
+            waterSound.Play();
+            //Debug.Log("POINTS: " + waterPoints + "=================================================");
+        }
+        else if (collision.collider.tag == "RootBeer")
+        {
+            Destroy(collision.gameObject);
+            pointsMultiplier = (float) Math.Ceiling(pointsMultiplier * 1.5f);
+            rootBeerSound.Play();
+            //Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
     }
 }
