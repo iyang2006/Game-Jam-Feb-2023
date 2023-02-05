@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             //waterPoints += (int) (pointsMultiplier + 1);
             waterPoints += (int) Math.Ceiling(pointsMultiplier);
-            Debug.Log("POINTS: " + waterPoints);
+            Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
     }
 }

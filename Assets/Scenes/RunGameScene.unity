@@ -1200,6 +1200,9 @@ MonoBehaviour:
   - {fileID: 3157672122223472759}
   - {fileID: 1003034935}
   rockPrefab: {fileID: 4904919984231573047, guid: a2a044cdcb12a408e80ff73a2a469699, type: 3}
+  waterPrefab: {fileID: 4904919984231573047, guid: 5b260fde33534fa45adb776cc2772991, type: 3}
+  rockSpawnChance: 0.15
+  waterSpawnChance: 0.05
 --- !u!1 &787622139
 GameObject:
   m_ObjectHideFlags: 0

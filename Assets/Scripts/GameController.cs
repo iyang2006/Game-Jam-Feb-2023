@@ -83,9 +83,10 @@ public class GameController : MonoBehaviour
         // Spawn a row of rocks, with percentage chance of a rock being spawned
         GameObject[] row = new GameObject[TileSize];
         bool addRow = false;
+        //bool addedItem = false;
         for (int i = 0; i < TileSize; i++)
         {
-            bool addedItem = false;
+            //bool addedItem = false;
             float chance = Random.Range(0.0f, 1.0f);
             if (chance < spawnChance)
             {
@@ -93,16 +94,20 @@ public class GameController : MonoBehaviour
                 GameObject rock = Instantiate(rockPrefab, pos, Quaternion.identity);
                 row[i] = rock;
                 addRow = true;
-                addedItem = true;
+                //addedItem = true;
             }
-            chance = Random.Range(0.0f, 1.0f);
-            if ((chance < wSpawnChance) && (!addedItem))
+        }
+        for (int i = 0; i < TileSize; i++)
+        {
+            //bool addedItem = false;
+            float chance = Random.Range(0.0f, 1.0f);
+            if ((chance < wSpawnChance) && (row[i] == null))
             {
                 Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
                 GameObject rock = Instantiate(waterPrefab, pos, Quaternion.identity);
                 row[i] = rock;
                 addRow = true;
-                addedItem = true;
+                //addedItem = true;
             }
         }
         if (addRow)
