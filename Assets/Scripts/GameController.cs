@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     public List<GameObject> dirtChunks;
 
     public GameObject rockPrefab;
+    public GameObject waterPrefab;
     List<GameObject[]> rocks;
 
     float speed = 3f;
@@ -36,6 +37,9 @@ public class GameController : MonoBehaviour
 
     float timeBetweenSpawns;
     float timeSinceLastSpawn;
+
+    public float rockSpawnChance = 0.15f;
+    public float waterSpawnChance = 0.05f;
 
     void Start()
     {
@@ -50,16 +54,17 @@ public class GameController : MonoBehaviour
         timeSinceLastSpawn = 0.0f;
 
         // Instantiate the first rock row
-        SpawnRockRow(0.15f);
+        SpawnRockRow(rockSpawnChance, 0f);
     }
 
-    void SpawnRockRow(float spawnChance)
+    void SpawnRockRow(float spawnChance, float wSpawnChance)
     {
         // Spawn a row of rocks, with percentage chance of a rock being spawned
         GameObject[] row = new GameObject[TileSize];
         bool addRow = false;
         for (int i = 0; i < TileSize; i++)
         {
+            bool addedItem = false;
             float chance = Random.Range(0.0f, 1.0f);
             if (chance < spawnChance)
             {
@@ -67,6 +72,16 @@ public class GameController : MonoBehaviour
                 GameObject rock = Instantiate(rockPrefab, pos, Quaternion.identity);
                 row[i] = rock;
                 addRow = true;
+                addedItem = true;
+            }
+            chance = Random.Range(0.0f, 1.0f);
+            if ((chance < wSpawnChance) && (!addedItem))
+            {
+                Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
+                GameObject rock = Instantiate(waterPrefab, pos, Quaternion.identity);
+                row[i] = rock;
+                addRow = true;
+                addedItem = true;
             }
         }
         if (addRow)
@@ -124,7 +139,7 @@ public class GameController : MonoBehaviour
         if (timeSinceLastSpawn > timeBetweenSpawns)
         {
             timeSinceLastSpawn -= timeBetweenSpawns;
-            SpawnRockRow(0.15f);
+            SpawnRockRow(rockSpawnChance, waterSpawnChance);
         }
 
         // Move all the rocks up

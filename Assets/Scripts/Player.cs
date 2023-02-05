@@ -33,5 +33,12 @@ public class Player : MonoBehaviour
         {
             dead = true;
         }
+        if (collision.collider.tag == "Water")
+        {
+            Destroy(collision.gameObject);
+            //waterPoints += (int) (pointsMultiplier + 1);
+            waterPoints += (int) Math.Ceiling(pointsMultiplier);
+            Debug.Log("POINTS: " + waterPoints);
+        }
     }
 }
