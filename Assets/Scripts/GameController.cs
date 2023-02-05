@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public GameObject Rock;
     List<GameObject[]> rocks;
 
-    float speed = 2f;
+    float speed = 4f;
 
     const int TileSize = 7;
     Vector2 rockSpawnPos;
@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         timeSinceLastSpawn = 0.0f;
 
         // Instantiate the first rock row
-        SpawnRockRow(0.2f);
+        SpawnRockRow(0.15f);
     }
 
     void SpawnRockRow(float spawnChance)
@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour
         if (timeSinceLastSpawn > timeBetweenSpawns)
         {
             timeSinceLastSpawn -= timeBetweenSpawns;
-            SpawnRockRow(0.2f);
+            SpawnRockRow(0.15f);
         }
 
         // Remove first row of rocks if it's off the screen
