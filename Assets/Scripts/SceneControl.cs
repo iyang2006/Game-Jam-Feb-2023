@@ -24,6 +24,12 @@ public class SceneControl : MonoBehaviour
         canvas.SetActive(true);
     }
 
+    // Reactivate canvases/scenes
+    public void GameDeactivate()
+    {
+        canvas.SetActive(false);
+    }
+
     // Button for playing again (end menu -> game screen)
     public void PlayAgain()
     {
