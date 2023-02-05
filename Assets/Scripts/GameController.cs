@@ -105,7 +105,6 @@ public class GameController : MonoBehaviour
     void SpawnRockRow()
     {
         // Spawn a row of rocks, with percentage chance of a rock being spawned
-
         bool[] addedItem = new bool[TileSize];
 
         int rocksSpawned = 0;
