@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public float pointsMultiplier = 1;
     [HideInInspector] public float depth = 0;
 
-    [HideInInspector] public bool dead = false;
+    [HideInInspector] public bool dead;
 
     public AudioSource bonkSound;
     public AudioSource waterSound;
@@ -24,18 +24,14 @@ public class Player : MonoBehaviour
         waterPoints = 0;
         pointsMultiplier = 1;
         depth = 0;
+        dead = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision");
-        Debug.Log(collision.collider.tag);
+        // Debug.Log("Collision");
+        // Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Rock")
         {
             dead = true;

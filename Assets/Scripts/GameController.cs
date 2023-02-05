@@ -59,12 +59,13 @@ public class GameController : MonoBehaviour
 
     float levelTime;
     int level = 1;
-    float levelUpInterval = 1;
+    float levelUpInterval = 10;
 
     void Start()
     {
         sceneControl = gameOverScreen.GetComponent<SceneControl>();
         playerScript = player.GetComponent<Player>();
+        Debug.Log(playerScript);
         gameEnded = false;
 
         lineRenderer = player.GetComponent<LineRenderer>();
@@ -94,11 +95,19 @@ public class GameController : MonoBehaviour
         SpawnRockRow();
     }
 
+    bool[] ShuffleArray(bool[] array)
+    {
+        System.Random rnd = new System.Random();
+        bool[] shuffledArray = array.OrderBy(a => rnd.Next()).ToArray();
+        return shuffledArray;
+    }
+
     void SpawnRockRow()
     {
         // Spawn a row of rocks, with percentage chance of a rock being spawned
 
-        GameObject[] row = new GameObject[TileSize];
+        bool[] addedItem = new bool[TileSize];
+
         int rocksSpawned = 0;
         for (int i = 0; i < TileSize; i++)
         {
@@ -106,16 +115,26 @@ public class GameController : MonoBehaviour
             float chance = Random.Range(0.0f, 1.0f);
             if (chance < spawnChance)
             {
+                addedItem[i] = true;
+                rocksSpawned++;
+                if (rocksSpawned >= maxRocks)
+                {
+                    addedItem = ShuffleArray(addedItem);
+                    break;
+                }
+            }
+            else {
+                addedItem[i] = false;
+            }
+        }
+
+        GameObject[] row = new GameObject[TileSize];
+        for (int i = 0; i < TileSize; i++) {
+            bool spawn = addedItem[i];
+            if (spawn) {
                 Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
                 GameObject rock = Instantiate(rockPrefab, pos, Quaternion.identity);
                 row[i] = rock;
-                rocksSpawned++;
-                // if (rocksSpawned >= maxRocks)
-                // {
-                //     System.Random rnd = new System.Random();
-                //     row = row.OrderBy(a => rnd.Next()).ToArray();
-                //     break;
-                // }
             }
         }
 
@@ -182,7 +201,6 @@ public class GameController : MonoBehaviour
                 GameObject water = Instantiate(waterPrefab, pos, Quaternion.identity);
                 row[i] = water;
                 addRow = true;
-                break;
             }
         }
 
@@ -269,11 +287,11 @@ public class GameController : MonoBehaviour
         {
             timeSinceLastLineChange -= lineSpawnTime;
 
-            Debug.Log("line change");
+            // Debug.Log("line change");
             for (int i = 0; i < linePoints.Count; i++)
             {
                 linePoints[i] += LineGap * Vector3.up;
-                Debug.Log(linePoints[i]);
+                // Debug.Log(linePoints[i]);
             }
             linePoints.RemoveAt(linePoints.Count - 1);
             linePoints.Insert(0, new Vector3(player.transform.position.x, player.transform.position.y, 0));
