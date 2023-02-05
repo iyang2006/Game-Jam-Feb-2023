@@ -17,6 +17,17 @@ public class Player : MonoBehaviour
     public AudioSource bonkSound;
     public AudioSource waterSound;
     public AudioSource rootBeerSound;
+    public AudioSource rootCanalSound;
+
+    float timerDuration = 8f;
+    float timerTime = 0f;
+    bool timerActive = false;
+
+    float fadeTime = 2f;
+    float fadeDuration = 2f;
+    public GameObject mainCamera;
+
+    bool fadingOut = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +40,51 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (timerActive)
+        {
+
+            if (fadeTime < fadeDuration)
+            {
+                fadeTime += Time.deltaTime;
+                float currentVolume = ((fadeTime / fadeDuration) * (1.5f - 1f)) + 1f;
+                mainCamera.GetComponent<AudioSource>().pitch = currentVolume;
+            }
+
+            timerTime -= Time.deltaTime;
+            if (timerTime <= 2)
+            {
+                if (!fadingOut)
+                {
+                    fadeTime = 0;
+                    fadingOut = true;
+                }
+                fadeTime += Time.deltaTime;
+                float currentVolume = ((fadeTime / fadeDuration) * (1f - 1.5f)) + 1.5f;
+                mainCamera.GetComponent<AudioSource>().pitch = currentVolume;
+            }
+            if (timerTime <= 0)
+            {
+                mainCamera.GetComponent<AudioSource>().pitch = 1f;
+                timerActive = false;
+                fadingOut = false;
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Rock")
         {
-            dead = true;
-            bonkSound.Play();
+            if (!timerActive)
+            {
+                dead = true;
+                bonkSound.Play();
+            }
+            else
+            {
+                Destroy(collision.gameObject);
+                rootCanalSound.Play();
+            }
         }
         else if (collision.collider.tag == "Water")
         {
@@ -51,6 +98,17 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             pointsMultiplier = (float) Math.Ceiling(pointsMultiplier * 1.5f);
             rootBeerSound.Play();
+            //Debug.Log("POINTS: " + waterPoints + "=================================================");
+        }
+        else if (collision.collider.tag == "RootCanal")
+        {
+            Destroy(collision.gameObject);
+            rootBeerSound.Play();
+
+            timerTime = timerDuration;
+            timerActive = true;
+            fadeTime = 0;
+
             //Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
     }

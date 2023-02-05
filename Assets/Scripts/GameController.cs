@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
     public GameObject rockPrefab;
     public GameObject waterPrefab;
     public GameObject rootBeerPrefab;
+    public GameObject rootCanalPrefab;
     List<GameObject[]> rocks;
     //
 
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour
     public float rockSpawnChance = 0.15f;
     public float waterSpawnChance = 0.05f;
     public float rootBeerSpawnChance = 0.03f;
+    public float rootCanalSpawnChance = 0.01f;
 
     void Start()
     {
@@ -70,7 +72,7 @@ public class GameController : MonoBehaviour
         timeSinceLastSpawn = 0.0f;
 
         // Instantiate the first rock row
-        SpawnRockRow(rockSpawnChance, 0f, 0f);
+        SpawnRockRow(rockSpawnChance, 0f, 0f, 0f);
         //SpawnRockRow(0.15f);
 
         // Initialize line renderer positions with 10 points over 3 units
@@ -86,7 +88,7 @@ public class GameController : MonoBehaviour
         lineRenderer.SetPositions(linePoints.ToArray());
     }
 
-    void SpawnRockRow(float spawnChance, float wSpawnChance, float bSpawnChance)
+    void SpawnRockRow(float spawnChance, float wSpawnChance, float bSpawnChance, float cSpawnChance)
     {
         // Spawn a row of rocks, with percentage chance of a rock being spawned
         GameObject[] row = new GameObject[TileSize];
@@ -122,6 +124,17 @@ public class GameController : MonoBehaviour
             {
                 Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
                 GameObject rock = Instantiate(rootBeerPrefab, pos, Quaternion.identity);
+                row[i] = rock;
+                addRow = true;
+            }
+        }
+        for (int i = 0; i < TileSize; i++)
+        {
+            float chance = Random.Range(0.0f, 1.0f);
+            if ((chance < cSpawnChance) && (row[i] == null))
+            {
+                Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
+                GameObject rock = Instantiate(rootCanalPrefab, pos, Quaternion.identity);
                 row[i] = rock;
                 addRow = true;
             }
@@ -198,7 +211,7 @@ public class GameController : MonoBehaviour
         if (timeSinceLastSpawn > timeBetweenSpawns)
         {
             timeSinceLastSpawn -= timeBetweenSpawns;
-            SpawnRockRow(rockSpawnChance, waterSpawnChance, rootBeerSpawnChance);
+            SpawnRockRow(rockSpawnChance, waterSpawnChance, rootBeerSpawnChance, rootCanalSpawnChance);
         }
 
         // Move all the rocks up
