@@ -36,4 +36,13 @@ public class SceneControl : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
+
+
+    /*private void ActivateTimer(float duration, bool screen)
+    {
+        startScreen= screen;
+        timerDuration = duration;
+        timerTime = 0;
+        timerActive = true;
+    }*/
 }
