@@ -40,7 +40,7 @@ public class SceneControl : MonoBehaviour
     // Button for exiting game
     public void ExitGame()
     {
-
+        Application.Quit();
     }
 
     /*private void ActivateTimer(float duration, bool screen)
