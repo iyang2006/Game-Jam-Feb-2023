@@ -62,7 +62,8 @@ public class GameController : MonoBehaviour
         timeSinceLastSpawn = 0.0f;
 
         // Instantiate the first rock row
-        SpawnRockRow(0.15f);
+        SpawnRockRow(rockSpawnChance, 0f);
+        //SpawnRockRow(0.15f);
 
         // Initialize line renderer positions with 10 points over 3 units
         lineSpawnTime = LineGap / speed;
@@ -75,7 +76,6 @@ public class GameController : MonoBehaviour
             linePoints.Add(new Vector3(0, player.transform.position.y + i * LineGap, 0));
         }
         lineRenderer.SetPositions(linePoints.ToArray());
-        SpawnRockRow(rockSpawnChance, 0f);
     }
 
     void SpawnRockRow(float spawnChance, float wSpawnChance)
