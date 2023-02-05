@@ -47,14 +47,14 @@ public class Movement : MonoBehaviour
             Vector2 movementDirection = new Vector2((gameObject.transform.position.x - previousPosition.x), gameObject.transform.position.y);
 
             RaycastHit2D raycastHit = Physics2D.Raycast(previous2DPosition, movementDirection, movementDirection.x);
-            Debug.Log("RayCast fired!");
+            //Debug.Log("RayCast fired!");
             if (raycastHit)
             {
-                Debug.Log("Hit somethin'!   |   " + raycastHit.collider.name + "   |   " + raycastHit.collider.tag + "   |   " +
-                    previous2DPosition.x + " : " + gameObject.transform.position.x + "   |   " + movementDirection.x + "   |   " + movementDirection.magnitude);
+                //Debug.Log("Hit somethin'!   |   " + raycastHit.collider.name + "   |   " + raycastHit.collider.tag + "   |   " +
+                    //previous2DPosition.x + " : " + gameObject.transform.position.x + "   |   " + movementDirection.x + "   |   " + movementDirection.magnitude);
                 if (raycastHit.collider.tag == "Rock")
                 {
-                    Debug.Log("We hit a Rock!");
+                    //Debug.Log("We hit a Rock!");
                     gameObject.GetComponent<Player>().dead = true;
                 }
             }

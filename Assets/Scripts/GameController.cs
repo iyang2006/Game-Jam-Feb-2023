@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,20 +14,26 @@ public class GameController : MonoBehaviour
     private float fadeTime = 0f;
     //MUSIC TESTING
 
-
-
-
     public GameObject gameOverScreen;
     SceneControl sceneControl;
     public GameObject player;
     Player playerScript;
     bool gameEnded;
 
+    LineRenderer lineRenderer;
+    List<Vector3> linePoints;
+    const float LineLength = 3;
+    const int LineCount = 100;
+    const float LineGap = LineLength / LineCount;
+    float lineSpawnTime;
+    float timeSinceLastLineChange;
+
     // one dirt chunk at the start of the game
     public GameObject dirtChunkPrefab;
     public List<GameObject> dirtChunks;
 
     public GameObject rockPrefab;
+    public GameObject waterPrefab;
     List<GameObject[]> rocks;
 
     float speed = 3f;
@@ -37,11 +44,16 @@ public class GameController : MonoBehaviour
     float timeBetweenSpawns;
     float timeSinceLastSpawn;
 
+    public float rockSpawnChance = 0.15f;
+    public float waterSpawnChance = 0.05f;
+
     void Start()
     {
         sceneControl = gameOverScreen.GetComponent<SceneControl>();
         playerScript = player.GetComponent<Player>();
         gameEnded = false;
+
+        lineRenderer = player.GetComponent<LineRenderer>();
 
         rocks = new List<GameObject[]>();
 
@@ -50,16 +62,30 @@ public class GameController : MonoBehaviour
         timeSinceLastSpawn = 0.0f;
 
         // Instantiate the first rock row
-        SpawnRockRow(0.15f);
+        SpawnRockRow(rockSpawnChance, 0f);
+        //SpawnRockRow(0.15f);
+
+        // Initialize line renderer positions with 10 points over 3 units
+        lineSpawnTime = LineGap / speed;
+        timeSinceLastLineChange = 0;
+
+        lineRenderer.positionCount = LineCount;
+        linePoints = new List<Vector3>();
+        for (int i = 0; i < LineCount; i++)
+        {
+            linePoints.Add(new Vector3(0, player.transform.position.y + i * LineGap, 0));
+        }
+        lineRenderer.SetPositions(linePoints.ToArray());
     }
 
-    void SpawnRockRow(float spawnChance)
+    void SpawnRockRow(float spawnChance, float wSpawnChance)
     {
         // Spawn a row of rocks, with percentage chance of a rock being spawned
         GameObject[] row = new GameObject[TileSize];
         bool addRow = false;
         for (int i = 0; i < TileSize; i++)
         {
+            bool addedItem = false;
             float chance = Random.Range(0.0f, 1.0f);
             if (chance < spawnChance)
             {
@@ -67,6 +93,16 @@ public class GameController : MonoBehaviour
                 GameObject rock = Instantiate(rockPrefab, pos, Quaternion.identity);
                 row[i] = rock;
                 addRow = true;
+                addedItem = true;
+            }
+            chance = Random.Range(0.0f, 1.0f);
+            if ((chance < wSpawnChance) && (!addedItem))
+            {
+                Vector3 pos = new Vector3(rockSpawnPos.x + i, rockSpawnPos.y, 0);
+                GameObject rock = Instantiate(waterPrefab, pos, Quaternion.identity);
+                row[i] = rock;
+                addRow = true;
+                addedItem = true;
             }
         }
         if (addRow)
@@ -120,11 +156,28 @@ public class GameController : MonoBehaviour
 
         Vector3 posChange = Vector3.up * speed * Time.deltaTime;
 
+        // edit the line renderer
+        timeSinceLastLineChange += Time.deltaTime;
+        if (timeSinceLastLineChange > lineSpawnTime)
+        {
+            timeSinceLastLineChange -= lineSpawnTime;
+
+            Debug.Log("line change");
+            for (int i = 0; i < linePoints.Count; i++)
+            {
+                linePoints[i] += LineGap * Vector3.up;
+                Debug.Log(linePoints[i]);
+            }
+            linePoints.RemoveAt(linePoints.Count - 1);
+            linePoints.Insert(0, new Vector3(player.transform.position.x, player.transform.position.y, 0));
+            lineRenderer.SetPositions(linePoints.ToArray());
+        }
+
         // Spawn a new row of rocks if it's time
         if (timeSinceLastSpawn > timeBetweenSpawns)
         {
             timeSinceLastSpawn -= timeBetweenSpawns;
-            SpawnRockRow(0.15f);
+            SpawnRockRow(rockSpawnChance, waterSpawnChance);
         }
 
         // Move all the rocks up
