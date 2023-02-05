@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,14 +14,19 @@ public class GameController : MonoBehaviour
     private float fadeTime = 0f;
     //MUSIC TESTING
 
-
-
-
     public GameObject gameOverScreen;
     SceneControl sceneControl;
     public GameObject player;
     Player playerScript;
     bool gameEnded;
+
+    LineRenderer lineRenderer;
+    List<Vector3> linePoints;
+    const float LineLength = 3;
+    const int LineCount = 100;
+    const float LineGap = LineLength / LineCount;
+    float lineSpawnTime;
+    float timeSinceLastLineChange;
 
     // one dirt chunk at the start of the game
     public GameObject dirtChunkPrefab;
@@ -43,6 +49,8 @@ public class GameController : MonoBehaviour
         playerScript = player.GetComponent<Player>();
         gameEnded = false;
 
+        lineRenderer = player.GetComponent<LineRenderer>();
+
         rocks = new List<GameObject[]>();
 
         rockSpawnPos = new Vector2(-3, -4);
@@ -51,6 +59,18 @@ public class GameController : MonoBehaviour
 
         // Instantiate the first rock row
         SpawnRockRow(0.15f);
+
+        // Initialize line renderer positions with 10 points over 3 units
+        lineSpawnTime = LineGap / speed;
+        timeSinceLastLineChange = 0;
+
+        lineRenderer.positionCount = LineCount;
+        linePoints = new List<Vector3>();
+        for (int i = 0; i < LineCount; i++)
+        {
+            linePoints.Add(new Vector3(0, player.transform.position.y + i * LineGap, 0));
+        }
+        lineRenderer.SetPositions(linePoints.ToArray());
     }
 
     void SpawnRockRow(float spawnChance)
@@ -119,6 +139,23 @@ public class GameController : MonoBehaviour
         timeSinceLastSpawn += Time.deltaTime;
 
         Vector3 posChange = Vector3.up * speed * Time.deltaTime;
+
+        // edit the line renderer
+        timeSinceLastLineChange += Time.deltaTime;
+        if (timeSinceLastLineChange > lineSpawnTime)
+        {
+            timeSinceLastLineChange -= lineSpawnTime;
+
+            Debug.Log("line change");
+            for (int i = 0; i < linePoints.Count; i++)
+            {
+                linePoints[i] += LineGap * Vector3.up;
+                Debug.Log(linePoints[i]);
+            }
+            linePoints.RemoveAt(linePoints.Count - 1);
+            linePoints.Insert(0, new Vector3(player.transform.position.x, player.transform.position.y, 0));
+            lineRenderer.SetPositions(linePoints.ToArray());
+        }
 
         // Spawn a new row of rocks if it's time
         if (timeSinceLastSpawn > timeBetweenSpawns)

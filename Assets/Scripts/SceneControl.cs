@@ -28,7 +28,7 @@ public class SceneControl : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Debug.Log("Play again");
+        // Debug.Log("Play again");
     }
 
     // Button for return to main menu (end menu -> start menu)
