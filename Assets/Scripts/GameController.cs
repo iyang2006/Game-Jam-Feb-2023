@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
 
     //
     public GameObject rockPrefab;
+    public GameObject squareRockPrefab;
     public GameObject waterPrefab;
     public GameObject rootBeerPrefab;
     List<GameObject[]> rocks;
