@@ -1496,6 +1496,7 @@ MonoBehaviour:
   - {fileID: 3157672122223472759}
   - {fileID: 1003034935}
   rockPrefab: {fileID: 4904919984231573047, guid: a2a044cdcb12a408e80ff73a2a469699, type: 3}
+  squareRockPrefab: {fileID: 0}
   waterPrefab: {fileID: 4904919984231573047, guid: 5b260fde33534fa45adb776cc2772991, type: 3}
   rootBeerPrefab: {fileID: 4904919984231573047, guid: 1c0816569f3bab94ca7e4ef676006214, type: 3}
   rootCanalPrefab: {fileID: 4904919984231573047, guid: 833c032afecd25649befe4c1e606872e, type: 3}
@@ -1965,7 +1966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2304,6 +2305,7 @@ MonoBehaviour:
   dirtChunkPrefab: {fileID: 0}
   dirtChunks: []
   rockPrefab: {fileID: 0}
+  squareRockPrefab: {fileID: 0}
   waterPrefab: {fileID: 0}
   rootBeerPrefab: {fileID: 0}
   rootCanalPrefab: {fileID: 0}
@@ -2454,7 +2456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
