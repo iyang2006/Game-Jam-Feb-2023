@@ -24,11 +24,18 @@ public class SceneControl : MonoBehaviour
         canvas.SetActive(true);
     }
 
+    // Reactivate canvases/scenes
+    public void GameDeactivate()
+    {
+        Debug.Log("deactivated1");
+        canvas.SetActive(false);
+        Debug.Log("deactivated2");
+    }
+
     // Button for playing again (end menu -> game screen)
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // Debug.Log("Play again");
     }
 
     // Button for return to main menu (end menu -> start menu)
@@ -37,6 +44,11 @@ public class SceneControl : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
+    // Button for exiting game
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 
     /*private void ActivateTimer(float duration, bool screen)
     {
