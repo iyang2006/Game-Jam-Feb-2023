@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
+    //MUSIC TESTING
+    public MainCamera mainCamera;
+    public float fadeDuration = 1.5f;
+    public float initialVolume = 1f;
+    public float finalVolume = 0.5f;
+    private float fadeTime = 0f;
+    //MUSIC TESTING
+
+
+
+
     public GameObject gameOverScreen;
     SceneControl sceneControl;
     public GameObject player;
@@ -17,7 +29,7 @@ public class GameController : MonoBehaviour
     public GameObject rockPrefab;
     List<GameObject[]> rocks;
 
-    float speed = 4f;
+    float speed = 3f;
 
     const int TileSize = 7;
     Vector2 rockSpawnPos;
@@ -72,6 +84,26 @@ public class GameController : MonoBehaviour
     {
         if (playerScript.dead)
         {
+
+            //MUSIC TESTING
+            if (fadeTime < fadeDuration)
+            {
+                fadeTime += Time.deltaTime;
+                float currentVolume = ((fadeTime / fadeDuration) * (finalVolume - initialVolume)) + initialVolume;
+                mainCamera.GetComponent<AudioSource>().pitch = currentVolume;
+
+                float currentBolume = ((fadeTime / fadeDuration) * (0.1f - 1f)) + 1f;
+                mainCamera.GetComponent<AudioSource>().volume = currentBolume;
+            }
+            else
+            {
+                //mainCamera.GetComponent <AudioSource>().Stop();
+                mainCamera.GetComponent<AudioSource>().volume = 0.05f;
+                mainCamera.GetComponent<AudioSource>().pitch = 0.5f;
+            }
+            //MUSIC TESTING
+
+
             if (!gameEnded)
             {
                 gameEnded = true;
