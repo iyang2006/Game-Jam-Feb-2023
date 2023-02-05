@@ -43,22 +43,22 @@ public class Movement : MonoBehaviour
                 gameObject.transform.position = new Vector3(rootPosition, position.y, position.z);
             }
 
-            Vector2 previous2DPosition = new Vector2(previousPosition.x, previousPosition.y);
-            Vector2 movementDirection = new Vector2((gameObject.transform.position.x - previousPosition.x), gameObject.transform.position.y);
+            // Vector2 previous2DPosition = new Vector2(previousPosition.x, previousPosition.y);
+            // Vector2 movementDirection = new Vector2((gameObject.transform.position.x - previousPosition.x), gameObject.transform.position.y);
 
-            RaycastHit2D raycastHit = Physics2D.Raycast(previous2DPosition, movementDirection, movementDirection.x);
-            //Debug.Log("RayCast fired!");
-            if (raycastHit)
-            {
-                //Debug.Log("Hit somethin'!   |   " + raycastHit.collider.name + "   |   " + raycastHit.collider.tag + "   |   " +
-                    //previous2DPosition.x + " : " + gameObject.transform.position.x + "   |   " + movementDirection.x + "   |   " + movementDirection.magnitude);
-                if (raycastHit.collider.tag == "Rock")
-                {
-                    //Debug.Log("We hit a Rock!");
-                    gameObject.GetComponent<Player>().dead = true;
-                }
-            }
-            previousPosition = gameObject.transform.position;
+            // RaycastHit2D raycastHit = Physics2D.Raycast(previous2DPosition, movementDirection, movementDirection.x);
+            // // Debug.Log("RayCast fired!");
+            // if (raycastHit)
+            // {
+            //     // Debug.Log("Hit somethin'!   |   " + raycastHit.collider.name + "   |   " + raycastHit.collider.tag + "   |   " +
+            //     //     previous2DPosition.x + " : " + gameObject.transform.position.x + "   |   " + movementDirection.x + "   |   " + movementDirection.magnitude);
+            //     if (raycastHit.collider.tag == "Rock")
+            //     {
+            //         // Debug.Log("We hit a Rock!");
+            //         gameObject.GetComponent<Player>().dead = true;
+            //     }
+            // }
+            // previousPosition = gameObject.transform.position;
 
             //Debug.Log("(" + mousePosition.x + " - " + "(" + Screen.width + "/" + 2 + ")) * (" + TileWidth + "/ (" + Screen.width + "/ (" + 2 + "))");
             //Debug.Log(mousePosition.x + "  |  " + rootPosition + "  |  " + Screen.width);

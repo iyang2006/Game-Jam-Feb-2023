@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collision");
+        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Rock")
         {
             dead = true;
@@ -41,14 +43,14 @@ public class Player : MonoBehaviour
         }
         else if (collision.collider.tag == "Water")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             waterPoints += (int) Math.Ceiling(pointsMultiplier);
             waterSound.Play();
             //Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
         else if (collision.collider.tag == "RootBeer")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             pointsMultiplier = (float) Math.Ceiling(pointsMultiplier * 1.5f);
             rootBeerSound.Play();
             //Debug.Log("POINTS: " + waterPoints + "=================================================");
