@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3910972770024309924}
   - component: {fileID: 621036586403197356}
   - component: {fileID: 2835352986389307823}
-  - component: {fileID: 3790958571333267346}
   m_Layer: 0
   m_Name: Square Root
   m_TagString: Untagged
@@ -116,24 +115,3 @@ PolygonCollider2D:
       - {x: -2.0898604, y: -2.4476738}
       - {x: 1.6802536, y: 0.1468699}
       - {x: 2.1800299, y: 1.6745567}
---- !u!50 &3790958571333267346
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854769063166270424}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0

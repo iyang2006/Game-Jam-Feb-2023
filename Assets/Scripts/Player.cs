@@ -72,11 +72,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log("Collision");
-        // Debug.Log(collision.collider.tag);
-        if (collision.collider.tag == "Rock")
+        Debug.Log("Collision");
+        if (other.tag == "Rock")
         {
             if (!timerActive)
             {
@@ -85,27 +84,27 @@ public class Player : MonoBehaviour
             }
             else
             {
-                collision.gameObject.SetActive(false);
+                other.gameObject.SetActive(false);
                 rootCanalSound.Play();
             }
         }
-        else if (collision.collider.tag == "Water")
+        else if (other.tag == "Water")
         {
-            collision.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
             waterPoints += (int) Math.Ceiling(pointsMultiplier);
             waterSound.Play();
             //Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
-        else if (collision.collider.tag == "RootBeer")
+        else if (other.tag == "RootBeer")
         {
-            collision.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
             pointsMultiplier = (float) Math.Ceiling(pointsMultiplier * 1.5f);
             rootBeerSound.Play();
             //Debug.Log("POINTS: " + waterPoints + "=================================================");
         }
-        else if (collision.collider.tag == "RootCanal")
+        else if (other.tag == "RootCanal")
         {
-            collision.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
             rootBeerSound.Play();
 
             timerTime = timerDuration;
