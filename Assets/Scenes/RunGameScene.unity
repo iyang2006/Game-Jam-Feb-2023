@@ -1503,7 +1503,7 @@ MonoBehaviour:
   rockSpawnChance: 0.15
   waterSpawnChance: 0.05
   rootBeerSpawnChance: 0.02
-  rootCanalSpawnChance: 0.005
+  rootCanalSpawnChance: 0.001
 --- !u!1 &787622139
 GameObject:
   m_ObjectHideFlags: 0
